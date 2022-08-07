@@ -1,0 +1,26 @@
+{
+  "name": "reginald2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "clear && tsc && mocha",
+    "runnit": "clear && tsc && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.0.0",
+    "dotenv": "^16.0.1",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.18",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/spellchecker": "^3.5.0"
+  }
+}
