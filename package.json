@@ -8,13 +8,16 @@
   "scripts": {
     "build": "tsc",
     "test": "clear && tsc && mocha",
-    "runnit": "clear && tsc && node index.js"
+    "debug": "clear && tsc && DEBUG=consys:* mocha",
+    "runnit": "clear && tsc && DEBUG=consys:* node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.0.0",
+    "@types/debug": "^4.1.7",
+    "@types/node": "^18.7.9",
+    "debug": "^4.3.4",
     "dotenv": "^16.0.1",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.18",

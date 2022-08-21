@@ -13,28 +13,39 @@ const config = {
         max: 100
     },
     'custom':{
-        default: 'blap'
+        default: 'damn',
+        options: ['dope', 'sweet', 'damn']
+
     },
-    'obj':{
-        type: {
-            first: 'obj:first',
-            last: 'obj:last'
-        }
+
+    'building':{
+        type: 'object',
+        keys: ['type','year', 'color']
     },
-    'obj:first':{},
-    'obj:last':{},
+    '$type':{
+        type: 'string',
+        // options: ['house', 'business', 'hotel', 'public']
+    },
+    '$year':{
+        type: 'number',
+        default: 1900,
+        min: 1800,
+        max: 2022,
+    },
 }
 
 const options = {
     allowCustom: false,
+    clampRange: true
 }
 
 
 
 
 const func = (settings) => {
-    console.log(`>> My name is ${settings.name} and I am ${settings.age} years old`)
-    console.log('-'.repeat(60))
+    console.log('-'.repeat(100))
+    console.log(`>> My name is ${settings.name} and I am ${settings.age} years old. I live in a ${settings.building.type} built in ${settings.building.year}`)
+    console.log('-'.repeat(100))
     console.log(settings)
 }
 
@@ -48,9 +59,9 @@ const myFunc = consys(func, config, options)
 myFunc({
     name: 'Mike',
     age: 1000,
-    custom: 'dope',
-    obj: {
-        some: 'thing',
-        count: 51
+    custom: 'sweet',
+    building: {
+        type: 'house',
+        year: 1702
     }
 })

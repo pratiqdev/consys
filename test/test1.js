@@ -44,7 +44,21 @@ describe(heading('Basic Config / Options Tests'), () => {
 
   });
 
-  describe('# consys | required parameters', () => {
+  describe('# consys | argument testing', () => {
+
+    it('should return a callback with parsed settings when config provided', () => {
+        let options = null
+        let config = {
+            name:  { type: 'string' }
+        }
+
+        const testA = consys((s) => s, config, options)
+        const result = testA({name: 'Bob'})
+
+        assert.equal(typeof testA, 'function')
+        assert.equal(typeof result.name, 'string')
+        assert.equal(result.name, 'Bob')
+    });
     
   })
 
