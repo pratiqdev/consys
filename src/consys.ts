@@ -242,7 +242,7 @@ const consys = <T>(
         //     }
         // }
 
-        const parseArgumentsInObject = (argName:string, argValue: any, configItem:any, nestKey?: string) => {
+        const parseArgumentsInObject = (argName:string, argValue: any, configItem:any, parents?: string[]) => {
 
             log_parser(`Parsing: ${argName} : ${argValue} @ ${JSON.stringify(configItem)}`)
             log_parser({argName, argValue, configItem})
@@ -363,8 +363,11 @@ const consys = <T>(
                             // parseArgumentsInObject([ `$${key}` , argValue[`$${key}`],  ])
 
                             log_parser(`Found key "${nestKey}" in config:`, config[nestKey])
+                            log_parser(`USING SETTER: "parsedArguments[${argName}][${key}]"`)
 
-                            parseArgumentsInObject(nestKey, argValue[key], config[nestKey], key)
+                            parsedArguments[argName] = {}
+
+                            parseArgumentsInObject(nestKey, argValue[key], config[nestKey], [argName, key])
                         } 
                     })
 
@@ -385,8 +388,23 @@ const consys = <T>(
                 }
 
                 //~ HOW TO HANDLE SETTING NESTED KEY:VALS
-                if(nestKey){
-                    parsedArguments[argName][nestKey] = argValue
+                if(parents){
+                    
+                    let objRef = {...parsedArguments}
+
+                    parents.reverse().forEach((prnt: string) => {
+                        console.log('='.repeat(20), prnt)
+                        if(!(prnt in objRef)){
+
+                            log_parser(`===> No "${prnt}" in "${JSON.stringify(objRef)}". Adding as "{}"`)
+                            objRef[prnt] = {}
+                            objRef = objRef[prnt]
+                            
+                        }
+                        console.log(objRef)
+                    })
+                    // objRef = argValue
+                    log_parser(`Attempting to set ${objRef} = ${argValue}"`)
                 }else{
                     parsedArguments[argName] = argValue
                 }

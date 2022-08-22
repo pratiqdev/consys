@@ -2,34 +2,33 @@ import consys from './dist/consys.js'
 
 
 const config = {
-    'name': {
-        default: 'John',
-        min: 1,
-        max: 50,
-    },
-    'age':{
-        type: 'number',
-        min: 1,
-        max: 100
-    },
-    'custom':{
-        default: 'damn',
-        options: ['dope', 'sweet', 'damn']
+    // 'name': {
+    //     default: 'John',
+    //     min: 1,
+    //     max: 50,
+    // },
+    // 'age':{
+    //     type: 'number',
+    //     min: 1,
+    //     max: 100
+    // },
+    // 'custom':{
+    //     default: 'damn',
+    //     options: ['dope', 'sweet', 'damn']
 
-    },
+    // },
 
     'building':{
         type: 'object',
-        keys: ['type','year', 'color']
+        keys: ['year']
     },
-    '$type':{
-        type: 'string',
-        // options: ['house', 'business', 'hotel', 'public']
-    },
+    // '$type':{
+    //     type: 'string',
+    //     // options: ['house', 'business', 'hotel', 'public']
+    // },
     '$year':{
         type: 'number',
-        default: 1900,
-        min: 1800,
+        min: 1900,
         max: 2022,
     },
 }
@@ -43,8 +42,8 @@ const options = {
 
 
 const func = (settings) => {
-    console.log('-'.repeat(100))
-    console.log(`>> My name is ${settings.name} and I am ${settings.age} years old. I live in a ${settings.building.type} built in ${settings.building.year}`)
+    // console.log('-'.repeat(100))
+    // console.log(`>> My name is ${settings.name} and I am ${settings.age} years old. I live in a ${settings.building.type} built in ${settings.building.year}`)
     console.log('-'.repeat(100))
     console.log(settings)
 }
@@ -57,11 +56,11 @@ const myFunc = consys(func, config, options)
 
 
 myFunc({
-    name: 'Mike',
-    age: 1000,
-    custom: 'sweet',
+    // name: 'Mike',
+    // age: 1000,
+    // custom: 'sweet',
     building: {
-        type: 'house',
+        // type: 'house',
         year: 1702
     }
 })

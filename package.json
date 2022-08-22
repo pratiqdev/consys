@@ -9,7 +9,8 @@
     "build": "tsc",
     "test": "clear && tsc && mocha",
     "debug": "clear && tsc && DEBUG=consys:* mocha",
-    "runnit": "clear && tsc && DEBUG=consys:* node index.js"
+    "runnit": "clear && tsc && DEBUG=consys:* node index.js",
+    "runnit-windows": "clear && tsc && set DEBUG=consys:* && node index.js"
   },
   "keywords": [],
   "author": "",
