@@ -10,6 +10,7 @@
     "test": "clear && tsc && mocha",
     "debug": "clear && tsc && DEBUG=consys:* mocha",
     "runnit": "clear && tsc && DEBUG=consys:* node index.js",
+    "runnit-quiet": "clear && tsc && node index.js",
     "runnit-windows": "clear && tsc && set DEBUG=consys:* && node index.js"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
   "dependencies": {
     "@types/debug": "^4.1.7",
     "@types/node": "^18.7.9",
+    "chai": "^4.3.6",
     "debug": "^4.3.4",
     "dotenv": "^16.0.1",
     "mocha": "^10.0.0",

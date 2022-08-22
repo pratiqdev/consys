@@ -1,66 +1,42 @@
-import consys from './dist/consys.js'
+import consys from './dist/src/consys2.js'
 
 
 const config = {
-    // 'name': {
-    //     default: 'John',
-    //     min: 1,
-    //     max: 50,
-    // },
-    // 'age':{
-    //     type: 'number',
-    //     min: 1,
-    //     max: 100
-    // },
-    // 'custom':{
-    //     default: 'damn',
-    //     options: ['dope', 'sweet', 'damn']
-
-    // },
-
-    'building':{
-        type: 'object',
-        keys: ['year']
+    name: 'string',
+    building:{
+        residents: {
+            res_name: 'string',
+            owner: {
+                _type: 'string',
+                _required: true
+            },
+        }
     },
-    // '$type':{
-    //     type: 'string',
-    //     // options: ['house', 'business', 'hotel', 'public']
-    // },
-    '$year':{
-        type: 'number',
-        min: 1900,
-        max: 2022,
-    },
+
+
 }
 
 const options = {
     allowCustom: false,
-    clampRange: true
+    allowEmpty: true,
+    clampRange: true,
 }
-
-
-
 
 const func = (settings) => {
     // console.log('-'.repeat(100))
     // console.log(`>> My name is ${settings.name} and I am ${settings.age} years old. I live in a ${settings.building.type} built in ${settings.building.year}`)
-    console.log('-'.repeat(100))
+    console.log('v'.repeat(100))
     console.log(settings)
 }
 
-
 const myFunc = consys(func, config, options)
 
-
-
-
-
 myFunc({
-    // name: 'Mike',
-    // age: 1000,
-    // custom: 'sweet',
+    name: 'John',
     building: {
-        // type: 'house',
-        year: 1702
+        // year: 9999,
+        residents: {
+
+        }
     }
 })
