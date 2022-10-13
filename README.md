@@ -1,4 +1,4 @@
-<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+<div style="display:flex !important; flex-direction:column !important; justify-content:center !important; align-items:center !important; text-align:center !important;">
 
 # consys
 
