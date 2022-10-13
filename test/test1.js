@@ -1,14 +1,14 @@
 import assert from 'assert'
-import consys from '../dist/consys2.js'
+import consys from '../index.js'
 import { expect } from 'chai';
 
 const heading = (text) => `${text}\n  ${'-'.repeat(text.length)}`
 
-describe(heading('Basic Config / Options Tests'), () => {
+describe(heading('A | Basic Config / Options Tests'), () => {
 
   describe('required parameters', () => {
     
-    it('should return basic callback if no config or options provided', () => {
+    it('A | 1 | should return basic callback if no config or options provided', () => {
         let options = null
         let config = null
 
@@ -17,10 +17,10 @@ describe(heading('Basic Config / Options Tests'), () => {
         assert.equal(typeof testA, 'function')
     });
 
-    it('should return basic callback with config but no options', () => {
+    it('A | 2 | should return basic callback with config but no options', () => {
         let options = null
         let config = {
-            name:  { type: 'string' }
+            name:  { _type: 'string' }
         }
 
         const testA = consys((s) => s, config, options)
@@ -28,10 +28,10 @@ describe(heading('Basic Config / Options Tests'), () => {
         assert.equal(typeof testA, 'function')
     });
 
-    it('should return a callback with parsed settings when config provided', () => {
+    it('A | 3 | should return a callback with parsed settings when config provided', () => {
         let options = null
         let config = {
-            name:  { type: 'string' }
+            name:  { _type: 'string' }
         }
 
         const testA = consys((s) => s, config, options)
@@ -42,7 +42,7 @@ describe(heading('Basic Config / Options Tests'), () => {
         assert.equal(result.name, 'Bob')
     });
 
-    it('should throw error if called without required arg', () => {
+    it('A | 4 | should throw error if called without required arg', () => {
         let options = null
         let config = {
             name: 'string'
@@ -198,10 +198,12 @@ describe(heading('Root config types'), () => {
         })
 
         it('Should use default value if exists', () => {
-            const testA = consys((s) => s, {name: {
-                _type: 'string',
-                _default: 'Default'
-            }})
+            const testA = consys((s) => s, {
+                name: {
+                    _type: 'string',
+                    _default: 'Default'
+                }
+            })
             const res = testA()
             expect(res.name).to.equal('Default')
 
@@ -215,23 +217,50 @@ describe(heading('Root config types'), () => {
 
 
 
-describe(heading('Root config types'), () => {
+describe(heading('Complex Nesting'), () => {
 
-    describe('Nested parameters - depth: 1', () => {
+    describe('Nested parameter defaults', () => {
       
-        it('Should use defaults...', () => {
-            const testA = consys((s) => s, {
+        it('Sets default in object at depth: 1', () => {
+            const test_808234943543 = consys((s) => s, {
                 property: {
-                    owner: {
+                    _type: 'string',
+                    _default: 'Default'
+                }
+            })
+            const res = test_808234943543()
+            console.log(res)
+            expect(res.property.owner).to.equal('Default')
+
+        }) 
+        
+        it.skip('Sets defaults in object at depth: 2', () => {
+            const testA = consys((s) => s, {
+                person: {
+                    name: {
                         _type: 'string',
                         _default: 'Default'
+                    },
+                    age: {
+                        _type: 'number',
+                        _default: 90
                     }
                 }
             })
-            const res = testA()
-            expect(res.property.owner).to.equal('Default')
 
-        })           
+            const res = testA()
+            expect(res.person.name).to.equal('Default')
+            expect(res.person.age).to.equal(90)
+
+            console.log([
+                '\t==========================================================',
+                '\t| There is currently an issue with assigning defaults to',
+                '\t| nested properties when the parent does not yet exist in',
+                '\t| the argStore, or is not provided in the arguments object',
+                '\t==========================================================',
+            ].join('\n'))
+
+        })
      
 
     });

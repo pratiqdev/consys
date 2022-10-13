@@ -1,32 +1,36 @@
 {
-  "name": "reginald2",
+  "name": "consys",
   "version": "1.0.0",
-  "description": "",
+  "description": "Function argument configuration system",
   "main": "index.js",
   "type": "module",
-  "types": "dist/main.d.ts",
+  "types": "dist/consys.d.ts",
   "scripts": {
     "build": "tsc",
+    "simple-test":"clear && tsc && clear && DEBUG=@pq:* node index",
     "test": "clear && tsc && mocha",
-    "debug": "clear && tsc && DEBUG=consys:* mocha",
-    "runnit": "clear && tsc && DEBUG=consys:* node index.js",
+    "debug": "clear && tsc && DEBUG=@pq:* mocha",
+    "runnit": "clear && tsc && DEBUG=@pq:* node index.js",
     "runnit-quiet": "clear && tsc && node index.js",
-    "runnit-windows": "clear && tsc && set DEBUG=consys:* && node index.js"
+    "runnit-windows": "clear && tsc && set DEBUG=@pq:* && node index.js",
+    "runnit-env": "clear && tsc && set DEBUG=@pq:* && node env-test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/debug": "^4.1.7",
-    "@types/node": "^18.7.9",
-    "chai": "^4.3.6",
-    "debug": "^4.3.4",
-    "dotenv": "^16.0.1",
-    "mocha": "^10.0.0",
-    "nodemon": "^2.0.18",
-    "typescript": "^4.7.4"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.18",
+    "typescript": "^4.7.4",
+    "@types/node": "^18.7.9",
+    "@types/debug": "^4.1.7",
     "@types/spellchecker": "^3.5.0"
+  },
+  "optionalDependencies": {
+    "debug": "^4.3.4"
   }
 }

@@ -1,0 +1,8 @@
+node_modules
+src
+test
+.env
+.github-markdown.css
+tsconfig.json
+yarn.lock
+.gitignore
