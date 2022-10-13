@@ -1,5 +1,4 @@
-import consys from './dist/src/consys2.js'
-import { expect } from 'chai'
+import consys from './dist/consys.js'
 export default consys
 
 
